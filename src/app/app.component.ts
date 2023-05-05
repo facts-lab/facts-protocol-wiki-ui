@@ -35,8 +35,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy  {
   mainToolbarLoading: boolean =  true;
   mainToolbarIsVisible: boolean = false;
   defaultTheme: string = '';
-  appLogoLight: string = './assets/img/arweave-dark.png';
-  appLogoDark: string = './assets/img/arweave-light.png';
+  appLogoLight: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
+  appLogoDark: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
   mainLogo: string = '';
   loginSubscription: Subscription = Subscription.EMPTY;
   loadAccountSubscription: Subscription = Subscription.EMPTY;

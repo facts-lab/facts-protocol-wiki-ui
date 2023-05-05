@@ -30,8 +30,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
 	defaultTheme: string = '';
 	loadingSubmenu: boolean = false;
   appName: string = 'Arweave';
-  appLogoLight: string = './assets/img/arweave-dark.png';
-  appLogoDark: string = './assets/img/arweave-light.png';
+  appLogoLight: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
+  appLogoDark: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
   loadingLatestArticles: boolean = false;
   latestArticles: ArwikiPage[] = [];
   allLatestArticles: string[] = [];
