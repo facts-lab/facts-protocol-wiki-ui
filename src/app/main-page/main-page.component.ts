@@ -29,9 +29,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 	categoriesSubscription: Subscription = Subscription.EMPTY;
 	defaultTheme: string = '';
 	loadingSubmenu: boolean = false;
-  appName: string = 'Arweave';
-  appLogoLight: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
-  appLogoDark: string = 'https://arweave.net/Wcyf_OD5gE7ON_jkUGG-aoDFwTAIIZ_6Qu9TZv46qhY';
+  appName: string = '';
+  appLogoLight: string = '';
+  appLogoDark: string = '';
   loadingLatestArticles: boolean = false;
   latestArticles: ArwikiPage[] = [];
   allLatestArticles: string[] = [];
@@ -69,7 +69,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _arwikiMenu: ArwikiMenuService,
     private _arwikiPages: ArwikiPagesService
-  ) { }
+  ) { 
+    _arwikiTokenContract.getState().subscribe((state: any) => {
+        console.log('state', state);
+        this.appName = state.name || 'Arweave';
+        this.appLogoDark = state.settings.filter((setting: any) => setting[0] === 'communityLogo')[1] || '';
+        this.appLogoLight = state.settings.filter((setting: any) => setting[0] === 'communityLogo')[1] || '';
+    })
+  }
 
   loadMainPageData() {
     this.loadingSubmenu = true;
