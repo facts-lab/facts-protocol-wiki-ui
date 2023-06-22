@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
-import {TranslateService} from '@ngx-translate/core';
-import {ArwikiLang} from '../core/interfaces/arwiki-lang';
-import {ArweaveGateway} from '../core/interfaces/arweave-gateway';
+import { TranslateService } from '@ngx-translate/core';
+import { ArwikiLang } from '../core/interfaces/arwiki-lang';
+import { ArweaveGateway } from '../core/interfaces/arweave-gateway';
 import { UtilsService } from './utils.service';
 
 declare const window: any;
 declare const document: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserSettingsService {
-	private _defaultTheme: string = '';
-	private _defaultLang: ArwikiLang = {
-    code: "en",
-    native_name: "English",
-    writing_system: "LTR",
-    iso_name: "English",
-    active: true
+  private _defaultTheme: string = '';
+  private _defaultLang: ArwikiLang = {
+    code: 'en',
+    native_name: 'English',
+    writing_system: 'LTR',
+    iso_name: 'English',
+    active: true,
   };
-  
+
   private _defaultNetwork: ArweaveGateway = {
-    host: "arweave.net",
+    host: 'arweave.net',
     port: 443,
     protocol: 'https',
     useArweaveGW: false,
     // Current stable contract
-    contractAddress: 'jrfpo_Ihv2cHiUi0rsq0ZbI76GdS9kciRPmjvyRIFqM'
+    contractAddress: 'q2YIdbGIGT1tIMgPd7gVGoj44hBAEdjHOP2ipXYfcI0',
     // Testing contract
     // contractAddress: 'NUQkXe-8Akd5jw13hzWzfdepGg07Fg_HHimXCqy8BM4'
   };
@@ -41,14 +41,14 @@ export class UserSettingsService {
   private _protocolName = '';
   private _protocolVersion = '';
   private _socialMediaLinks: Record<string, string> = {
-    'socialMediaGitHub': '',
-    'socialMediaDiscord': '',
-    'socialMediaTwitter': '',
-    'socialMediaYoutube': '',
-    'socialMediaInstagram': '',
-    'socialMediaFacebook': '',
-    'socialMediaPublicSquare': '',
-    'socialMediaNarrative': ''
+    socialMediaGitHub: '',
+    socialMediaDiscord: '',
+    socialMediaTwitter: '',
+    socialMediaYoutube: '',
+    socialMediaInstagram: '',
+    socialMediaFacebook: '',
+    socialMediaPublicSquare: '',
+    socialMediaNarrative: '',
   };
 
   // Observable
@@ -85,7 +85,8 @@ export class UserSettingsService {
   private _mainToolbarLoadingSource = new Subject<boolean>();
 
   // Observable stream
-  public mainToolbarLoadingStream = this._mainToolbarLoadingSource.asObservable();
+  public mainToolbarLoadingStream =
+    this._mainToolbarLoadingSource.asObservable();
 
   updateMainToolbarLoading(_loading: boolean) {
     this._mainToolbarLoadingSource.next(_loading);
@@ -105,7 +106,8 @@ export class UserSettingsService {
   private _mainToolbarVisibilitySource = new Subject<boolean>();
 
   // Observable stream
-  public mainToolbarVisibilityStream = this._mainToolbarVisibilitySource.asObservable();
+  public mainToolbarVisibilityStream =
+    this._mainToolbarVisibilitySource.asObservable();
   public mainToolbarVisibility = false;
   public updateMainToolbarVisiblity(_visible: boolean) {
     this.mainToolbarVisibility = _visible;
@@ -173,7 +175,7 @@ export class UserSettingsService {
   // Observable string stream
   public protocolVersionStream = this._protocolVersionSource.asObservable();
 
-  public updateProtocolVersionObservable(version: string|number) {
+  public updateProtocolVersionObservable(version: string | number) {
     if (typeof version === 'number') {
       version = `${version}`;
     }
@@ -186,46 +188,62 @@ export class UserSettingsService {
   }
 
   // Observable string source
-  private _socialMediaLinksSource = new BehaviorSubject<Record<string, string>>({});
+  private _socialMediaLinksSource = new BehaviorSubject<Record<string, string>>(
+    {}
+  );
 
   // Observable string stream
   public socialMediaLinksStream = this._socialMediaLinksSource.asObservable();
 
   public updatesocialMediaLinks(socialMedia: string, handleOrLink: string) {
-    switch(socialMedia) {
+    switch (socialMedia) {
       case 'socialMediaGitHub':
-        this._socialMediaLinks[socialMedia] = `https://github.com/${handleOrLink}`;
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://github.com/${handleOrLink}`;
+        break;
       case 'socialMediaDiscord':
         this._socialMediaLinks[socialMedia] = handleOrLink;
 
-      break;
+        break;
       case 'socialMediaTwitter':
-        this._socialMediaLinks[socialMedia] = `https://twitter.com/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://twitter.com/${handleOrLink}`;
+
+        break;
       case 'socialMediaYoutube':
-        this._socialMediaLinks[socialMedia] = `https://youtube.com/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://youtube.com/${handleOrLink}`;
+
+        break;
       case 'socialMediaInstagram':
-        this._socialMediaLinks[socialMedia] = `https://instagram.com/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://instagram.com/${handleOrLink}`;
+
+        break;
       case 'socialMediaFacebook':
-        this._socialMediaLinks[socialMedia] = `https://facebook.com/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://facebook.com/${handleOrLink}`;
+
+        break;
       case 'socialMediaPublicSquare':
-        this._socialMediaLinks[socialMedia] = `https://publicsquare.social/#/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://publicsquare.social/#/${handleOrLink}`;
+
+        break;
       case 'socialMediaNarrative':
-        this._socialMediaLinks[socialMedia] = `https://narrative.social/#/${handleOrLink}`;
-        
-      break;
+        this._socialMediaLinks[
+          socialMedia
+        ] = `https://narrative.social/#/${handleOrLink}`;
+
+        break;
       default:
-        // Do nothing
+      // Do nothing
     }
   }
 
@@ -242,15 +260,17 @@ export class UserSettingsService {
   constructor(
     private _translate: TranslateService,
     private _utils: UtilsService
-   ) {
-  	this.initSettings();
+  ) {
+    this.initSettings();
   }
 
   initSettings() {
     const dtheme = window.localStorage.getItem('defaultTheme');
     const dlang = JSON.parse(window.localStorage.getItem('defaultLang'));
     const dnetwork = JSON.parse(window.localStorage.getItem('defaultNetwork'));
-    const dcookiesAccepted = JSON.parse(window.localStorage.getItem('cookiesAccepted'));
+    const dcookiesAccepted = JSON.parse(
+      window.localStorage.getItem('cookiesAccepted')
+    );
 
     // Default settings
     if (dtheme) {
@@ -270,11 +290,11 @@ export class UserSettingsService {
   }
 
   getDefaultTheme(): string {
-  	return this._defaultTheme;
+    return this._defaultTheme;
   }
 
   getDefaultLang(): ArwikiLang {
-  	return this._defaultLang;
+    return this._defaultLang;
   }
 
   getDefaultNetwork(): ArweaveGateway {
@@ -290,15 +310,15 @@ export class UserSettingsService {
   }
 
   setDefaultTheme(_theme: string) {
-  	if (_theme) {
-    	this._defaultTheme = _theme;
-    	window.localStorage.setItem('defaultTheme', this._defaultTheme);
+    if (_theme) {
+      this._defaultTheme = _theme;
+      window.localStorage.setItem('defaultTheme', this._defaultTheme);
       this.updateDefaultThemeObservable(this._defaultTheme);
-  	}
+    }
   }
 
   setDefaultLang(_lang: ArwikiLang) {
-  	if (_lang) {
+    if (_lang) {
       let def = '';
       try {
         def = JSON.stringify(_lang);
@@ -307,17 +327,17 @@ export class UserSettingsService {
         // this._defaultLang = {};
         throw Error('setDefaultLang: Error ' + err);
       }
-     
+
       document.documentElement.lang = this._defaultLang.code;
 
       if (this._defaultLang.writing_system) {
         document.documentElement.dir = this._defaultLang.writing_system;
       }
 
-    	window.localStorage.setItem('defaultLang', def);
+      window.localStorage.setItem('defaultLang', def);
       this._translate.use(this._defaultLang.code);
       this.updateSettingsLangObservable(this._defaultLang);
-  	}
+    }
   }
 
   setCookiesAccepted(_cookiesAccepted: boolean) {
@@ -332,16 +352,16 @@ export class UserSettingsService {
   }
 
   resetUserSettings() {
-  	this._defaultTheme = 'arwiki-light';
-  	window.localStorage.removeItem('defaultTheme');
-  	window.localStorage.removeItem('defaultLang');
+    this._defaultTheme = 'arwiki-light';
+    window.localStorage.removeItem('defaultTheme');
+    window.localStorage.removeItem('defaultLang');
     window.localStorage.removeItem('defaultNetwork');
     window.localStorage.removeItem('cookiesAccepted');
   }
 
   /*
-  *  Set default theme (Updates the href property)
-  */
+   *  Set default theme (Updates the href property)
+   */
   setTheme(theme: string) {
     const _ts: any = document.getElementsByTagName('body')[0];
 
@@ -352,37 +372,40 @@ export class UserSettingsService {
       case 'arwiki-light':
         _ts.className = theme;
         this.setDefaultTheme(theme);
-      break;
+        break;
       case 'arwiki-dark':
         _ts.className = theme;
         this.setDefaultTheme(theme);
-      break;
+        break;
       case 'arwiki-peach':
         _ts.className = theme;
         this.setDefaultTheme(theme);
-      break;
+        break;
       case 'arwiki-orange':
         _ts.className = theme;
         this.setDefaultTheme(theme);
-      break;
+        break;
       case 'arwiki-yellow':
         _ts.className = theme;
         this.setDefaultTheme(theme);
-      break;
+        break;
       default:
-      	console.error('Theme not found!');
-      break;
+        console.error('Theme not found!');
+        break;
     }
-
   }
 
   scrollToTop() {
-    const container = document.getElementById('arwiki-mat-sidenav-main-content');
+    const container = document.getElementById(
+      'arwiki-mat-sidenav-main-content'
+    );
     container.scrollTop = 0;
   }
 
   scrollTo(to_id: string, offset: number = 0) {
-    const container = document.getElementById('arwiki-mat-sidenav-main-content');
+    const container = document.getElementById(
+      'arwiki-mat-sidenav-main-content'
+    );
     const to = document.getElementById(to_id);
     const toData = to.getBoundingClientRect();
     container.scrollTop += toData.top + offset;
@@ -398,7 +421,7 @@ export class UserSettingsService {
         // this._defaultLang = {};
         throw Error('setDefaultNetwork: Error ' + err);
       }
-     
+
       window.localStorage.setItem('defaultNetwork', def);
       this.updateSettingsNetworkObservable(this._defaultNetwork);
     }
@@ -411,5 +434,4 @@ export class UserSettingsService {
     }
     return false;
   }
-
 }

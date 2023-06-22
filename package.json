@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production --base-href ./",
+    "deploy": "rm -rf dist/arwiki-* && npx bundlr upload-dir dist/arwiki --index-file index.html -h https://node2.bundlr.network -w $PATH_TO_WALLET -c arweave",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^15.2.7",
     "@angular/router": "^15.2.7",
     "@angular/service-worker": "^15.2.7",
+    "@bundlr-network/client": "0.11.2",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@permaweb/stampjs": "^0.0.15",
